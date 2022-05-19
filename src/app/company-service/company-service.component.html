@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+
+
+<div class="container mt-5">
+    <div class="row justify-content-around">
+        <div class="col text-center">
+            <h2>Service List</h2>
+
+        </div>
+    </div>
+
+    <div *ngIf="pageError" class="row mt-3">
+        <div class="alert alert-danger text-center" role="alert">
+            No Product Found!
+        </div>
+    </div>
+
+    <div class="row justify-content-around mt-3">
+        <div *ngFor="let service of companyServices" class="col-lg-3 col-md-5 col-sm-8 col-8 m-1">
+            <div class="card">
+                <img src="{{service.logo}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{service.serviceName}}</h5>
+                    <p class="card-text text-capitalize"><b>Company : </b>{{service.companyName}}</p>
+                    <p class="card-text">{{service.serviceDetails}}</p>
+                    <a href="services/contact/{{service.companyName}}" class="btn btn-primary">Contact</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

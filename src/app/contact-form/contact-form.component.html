@@ -1,0 +1,85 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="text-center mt-5">
+    <h1>Contact Form</h1>
+  </div>
+
+
+  <div class="row">
+    <div class="col-lg-7 mx-auto">
+      <div class="card mt-2 mx-auto p-4 bg-light">
+        <div class="card-body bg-light">
+          <div class="container">
+            <form #contactForm="ngForm" (ngSubmit)="addContact(contactForm.value)">
+              <div class="controls">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="form_name">Firstname *</label>
+                      <input id="form_name" ngModel #firstName="ngModel" type="text" name="firstName"
+                        class="form-control" placeholder="Please enter your firstname *" required="required"
+                        data-error="Firstname is required." />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="form_lastname">Lastname *</label>
+                      <input id="form_lastname" type="text" ngModel #lastName="ngModel" name="lastName"
+                        class="form-control" placeholder="Please enter your lastname *" required="required"
+                        data-error="Lastname is required." />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="form_email">Email *</label>
+                      <input id="form_email" type="text" [ngModel]="emailData" #email="ngModel" email name="email"
+                        class="form-control" readonly />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="phnNo">Phone No.</label>
+                      <input id="phnNo" type="text" ngModel #phnNo="ngModel" pattern="^[0-9]{10}$" name="phnNo"
+                        class="form-control" placeholder="Please enter your email *" required="required"
+                        data-error="Valid email is required." />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="form_message">Message *</label>
+                      <textarea id="form_message" ngModel #message="ngModel" name="message" class="form-control"
+                        placeholder="Write your message here." rows="4" required="required"
+                        data-error="Please, leave us a message."></textarea>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <div class="form-group">
+                          <label for="company"> Company Name</label>
+                          <input id="company" type="text" ngModel #company="ngModel" name="company" class="form-control"
+                            required="required" [ngModel]="companyName" readonly />
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12 mt-2">
+                    <button [disabled]="contactForm.invalid" class="btn btn-success btn-send pt-2 btn-block">
+                      Send Message
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

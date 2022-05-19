@@ -1,0 +1,60 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5 search-box-background">
+    <div class="row">
+        <div class="row m-2 text-center">
+            <h1>Welcome To Bhartiya Pratibha!</h1>
+        </div>
+        <div class="row m-6">
+            <div class="col">
+                <h5>Search Products</h5>
+            </div>
+        </div>
+        <form #searchProductsForm="ngForm" (ngSubmit)="searchProduct(searchProductsForm.value)">
+            <div class="mb-3 row">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="code">Product Code</span>
+                    <input min="1" max="10000000000" #code="ngModel" ngModel type="number" class="form-control"
+                        aria-describedby="code" name="code" />
+                </div>
+                <div *ngIf="code.invalid && code.touched" class="alert alert-danger w-50 mx-2" role="alert">
+                    Enter Valid Product Code
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="sname">Product Name</span>
+                    <input #name="ngModel" ngModel type="text" minlength="3" maxlength="50"
+                        pattern="^[A-z0-9]*$|^[A-z0-9]+\s[A-z0-9]*$" class="form-control" aria-describedby="name"
+                        name="name" />
+                </div>
+                <div *ngIf="name.invalid && name.touched" class="alert alert-danger w-50 mx-2" role="alert">
+                    Enter Valid Name
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="sname">Product Brand</span>
+                    <input #brand="ngModel" ngModel type="text" minlength="3" maxlength="50"
+                        pattern="^[A-z0-9&-]*$|^[A-z0-9&-]+\s[A-z0-9&-]*$" class="form-control" aria-describedby="brand"
+                        name="brand" />
+                </div>
+                <div *ngIf="brand.invalid && brand.touched" class="alert alert-danger w-50 mx-2" role="alert">
+                    Enter Valid Brand
+                </div>
+            </div>
+
+
+
+
+
+            <button [disabled]="searchProductsForm.invalid" class="btn btn-outline-success m-2">Search</button>
+            <a href="home" class="btn btn-outline-danger ">Cancel</a>
+            <a href="search/products" class="btn btn-outline-primary mx-2">All Products</a>
+
+        </form>
+
+    </div>
+
+
+</div>

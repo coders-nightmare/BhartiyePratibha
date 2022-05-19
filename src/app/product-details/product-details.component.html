@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+
+<div *ngIf="productNotFound" class="alert alert-danger m-2" role="alert">
+  <strong><b>Sorry! </b>Product Not Found </strong>
+</div>
+
+<div *ngIf="!productNotFound" class="container mt-3">
+
+  <div class="row justify-content-between">
+    <div class="col text-center">
+      <h2>Product Description </h2>
+
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="card mb-3">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{{product.image}}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h4 class="card-title text-capitalize">{{product.name}}</h4>
+            <p class="card-text text-capitalize"><b>Brand : </b>{{product.brand}}</p>
+            <p class="card-text"><b>Price : </b>${{product.price}}</p>
+            <p class="card-text">{{product.description}}</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="showAlert" class="alert alert-{{productDeliverable}} m-2" role="alert">
+
+      <strong>{{productServiceMsg}} </strong>
+    </div>
+
+
+    <form #serviceForm="ngForm" (ngSubmit)="isServicible(serviceForm.value)">
+      <div class="mb-3">
+        <label for="pinCode" class="form-label">Servicibility</label>
+        <input ngModel #pinCode="ngModel" min="1" max="100000000" type="number" class="form-control" id="pinCode"
+          name="pinCode" placeholder="Enter PinCode">
+      </div>
+      <button [disabled]="serviceForm.invalid" class="btn btn-outline-primary">Find</button>
+    </form>
+  </div>
+</div>

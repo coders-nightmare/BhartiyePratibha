@@ -1,0 +1,12 @@
+
+    <div class="card card-zoom mt-1">
+        <img style="height: 150px;" src="{{item.image}}" class="card-img-top" alt="default-image">
+        <div class="card-body">
+          <h5 class="card-title text-uppercase">{{item.name}}</h5>
+            
+            <p class="card-text text-capitalize">{{item.brand}} </p>
+            <p *ngIf="isAuthorized()" class="card-text">${{item.price}}</p>
+            <a href="search/product/productDetails/{{item.code}}" class="btn btn-outline-primary">Details..</a>
+        </div>
+      </div>
+

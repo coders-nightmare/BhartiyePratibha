@@ -1,0 +1,282 @@
+<app-navbar></app-navbar>
+
+
+<div *ngIf="!userType" class="container h-100">
+
+  <div class="row">
+    <h1 class="text-center mt-5 mb-5">Register As</h1>
+  </div>
+  <div class="row justify-content-around mt-5">
+    <div class="col-2 mx-auto">
+      <button class="btn btn-primary btn-lg " (click)="changeUser('company')">Company</button>
+    </div>
+    <div class="col-2 mx-auto">
+      <button class="btn btn-primary btn-lg" (click)="changeUser('customer')">Customer</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="pageError" class="alert alert-danger text-capitalize m-2" role="alert">
+  User Already Exist!
+</div>
+<section *ngIf="userType==='customer'" class="vh-80" style="background-color: #eee;">
+  <div class="container h-80">
+    <div class="row d-flex justify-content-center align-items-center h-80">
+      <div class="col-lg-12 col-xl-11">
+        <div class="card text-black" style="border-radius: 25px;">
+          <div class="card-body">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4">Sign up</p>
+
+
+                <form #registrationForm="ngForm" class="mx-1 mx-md-4" (ngSubmit)="signUp(registrationForm.value)">
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+
+                    <div class="form-outline flex-fill mb-0">
+                      <label class="form-label" for="name">Name</label>
+                      <input ngModel #name="ngModel" required minlength="3" maxlength="50"
+                        pattern="^[A-z]*$|^[A-z]+\s[A-z]*$" type="text" id="name" name="name" class="form-control" />
+                    </div>
+                  </div>
+                  <div *ngIf="name.touched && name.invalid" class="d-flex flex-row align-items-center mb-4">
+                    <div class="alert alert-danger" role="alert">
+                      Please Provide Correct Name
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+
+                    <div class="form-outline flex-fill mb-0">
+                      <label class="form-label" for="email">Email</label>
+                      <input ngModel #email="ngModel" email required type="email" id="email" name="email"
+                        class="form-control" />
+                    </div>
+                  </div>
+                  <div *ngIf="email.touched && email.invalid" class="d-flex flex-row align-items-center mb-4">
+                    <div class="alert alert-danger" role="alert">
+                      Please Provide Correct Email
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+
+                    <div class="form-outline flex-fill mb-0">
+                      <label class="form-label" for="password">Password</label>
+                      <input ngModel #password="ngModel" required type="password" id="password" name="password"
+                        class="form-control" />
+                    </div>
+                  </div>
+                  <div *ngIf="password.touched && password.invalid " class="d-flex flex-row align-items-center mb-4">
+                    <div class="alert alert-danger" role="alert">
+                      Please Enter Password
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+
+                    <div class="form-outline flex-fill mb-0">
+                      <label class="form-label" for="confirmPassword">Confirm password</label>
+                      <input ngModel #confirmPassword="ngModel" required type="password" id="confirmPassword"
+                        name="confirmPassword" class="form-control" />
+                    </div>
+                  </div>
+                  <div *ngIf="confirmPassword.touched && (confirmPassword.value!==password.value) "
+                    class="d-flex flex-row align-items-center mb-4">
+                    <div class="alert alert-danger" role="alert">
+                      Password Not Matching
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <button [disabled]="registrationForm.invalid" class="btn btn-primary btn-lg">Register</button>
+                  </div>
+
+                </form>
+
+              </div>
+              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                <img
+                  src="https://images.pexels.com/photos/1036857/pexels-photo-1036857.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                  class="img-fluid" alt="Sample image">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div *ngIf="userType==='company'" class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-6 col-xl-8 ">
+
+      <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4">Sign up</p>
+
+
+      <form #registrationForm="ngForm" class="mx-1 mx-md-4" (ngSubmit)="signUp(registrationForm.value)">
+
+        <div class="d-flex flex-row align-items-center mb-4">
+
+          <div class="form-outline flex-fill mb-0">
+            <label class="form-label" for="name">Name</label>
+            <input ngModel #name="ngModel" required minlength="3" maxlength="50" pattern="^[A-z]*$|^[A-z]+\s[A-z]*$"
+              type="text" id="name" name="name" class="form-control" />
+          </div>
+        </div>
+        <div *ngIf="name.touched && name.invalid" class="d-flex flex-row align-items-center mb-4">
+          <div class="alert alert-danger" role="alert">
+            Please Provide Correct Name
+          </div>
+        </div>
+
+        <div class="d-flex flex-row align-items-center mb-4">
+
+          <div class="form-outline flex-fill mb-0">
+            <label class="form-label" for="email">Email</label>
+            <input ngModel #email="ngModel" email required type="email" id="email" name="email" class="form-control" />
+          </div>
+        </div>
+        <div *ngIf="email.touched && email.invalid" class="d-flex flex-row align-items-center mb-4">
+          <div class="alert alert-danger" role="alert">
+            Please Provide Correct Email
+          </div>
+        </div>
+
+
+
+
+
+        <div class="d-flex flex-row align-items-center mb-4">
+
+          <div class="form-outline flex-fill mb-0">
+            <label class="form-label" for="company_name">Company Name</label>
+            <input ngModel #company_name="ngModel" required minlength="3" maxlength="50"
+              pattern="^[A-z]*$|^[A-z]+\s[A-z]*$" type="text" id="company_name" name="company_name"
+              class="form-control" />
+          </div>
+        </div>
+        <div *ngIf="company_name.touched && company_name.invalid" class="d-flex flex-row align-items-center mb-4">
+          <div class="alert alert-danger" role="alert">
+            Please Provide Correct company_name
+          </div>
+        </div>
+
+        <div class="d-flex flex-row align-items-center mb-4">
+
+          <div class="form-outline flex-fill mb-0">
+            <label class="form-label" for="logo">Logo</label>
+            <input ngModel #logo="ngModel" required type="url" id="logo" name="logo" class="form-control"
+              placeholder="image url" />
+          </div>
+        </div>
+        <div *ngIf="logo.touched && logo.invalid" class="d-flex flex-row align-items-center mb-4">
+          <div class="alert alert-danger" role="alert">
+            Please Provide Correct Logo
+          </div>
+        </div>
+
+        <div class="d-flex flex-row align-items-center mb-4">
+
+          <div class="form-outline flex-fill mb-0">
+            <label class="form-label" for="address">Address</label>
+            <input ngModel #address="ngModel" required type="text" id="address" name="address" class="form-control" />
+          </div>
+        </div>
+        <div *ngIf="address.touched && address.invalid" class="d-flex flex-row align-items-center mb-4">
+          <div class="alert alert-danger" role="alert">
+            Please Provide Correct Address
+          </div>
+        </div>
+
+        <div class="d-flex flex-row align-items-center mb-4">
+
+          <div class="form-outline flex-fill mb-0">
+            <label class="form-label" for="aadharNo">Aadhar Details</label>
+            <input ngModel #aadharNo="ngModel" required type="text" minlength="12" maxlength="12" id="aadharNo"
+              pattern="^[0-9]*$" name="aadharNo" class="form-control" />
+          </div>
+        </div>
+        <div *ngIf="aadharNo.touched && aadharNo.invalid" class="d-flex flex-row align-items-center mb-4">
+          <div class="alert alert-danger" role="alert">
+            Please Provide Correct Aadhar Card Number
+          </div>
+        </div>
+
+        <div class="d-flex flex-row align-items-center mb-4">
+
+          <div class="form-outline flex-fill mb-0">
+            <label class="form-label" for="service_name">Service Name/Category</label>
+            <input ngModel #service_name="ngModel" required minlength="3" maxlength="50"
+              pattern="^[A-z/-'&]*$|^[A-z/-'&]+\s[A-z/-'&]*$" type="text" id="service_name" name="service_name"
+              class="form-control" />
+          </div>
+        </div>
+        <div *ngIf="service_name.touched && service_name.invalid" class="d-flex flex-row align-items-center mb-4">
+          <div class="alert alert-danger" role="alert">
+            Please Provide Correct Service Name
+          </div>
+        </div>
+
+
+
+
+
+        <div class="d-flex flex-row align-items-center mb-4">
+
+          <div class="form-outline flex-fill mb-0">
+            <label class="form-label" for="details">Service Details</label>
+            <input ngModel #details="ngModel" required minlength="20" maxlength="200" type="text" id="details"
+              name="details" class="form-control" />
+          </div>
+        </div>
+        <div *ngIf="details.touched && details.invalid" class="d-flex flex-row align-items-center mb-4">
+          <div class="alert alert-danger" role="alert">
+            Please Provide Correct details
+          </div>
+        </div>
+
+
+        <div class="d-flex flex-row align-items-center mb-4">
+
+          <div class="form-outline flex-fill mb-0">
+            <label class="form-label" for="password">Password</label>
+            <input ngModel #password="ngModel" required type="password" id="password" name="password"
+              class="form-control" />
+          </div>
+        </div>
+        <div *ngIf="password.touched && password.invalid " class="d-flex flex-row align-items-center mb-4">
+          <div class="alert alert-danger" role="alert">
+            Please Enter Password
+          </div>
+        </div>
+
+        <div class="d-flex flex-row align-items-center mb-4">
+
+          <div class="form-outline flex-fill mb-0">
+            <label class="form-label" for="confirmPassword">Confirm password</label>
+            <input ngModel #confirmPassword="ngModel" required type="password" id="confirmPassword"
+              name="confirmPassword" class="form-control" />
+          </div>
+        </div>
+        <div *ngIf="confirmPassword.touched && (confirmPassword.value!==password.value) "
+          class="d-flex flex-row align-items-center mb-4">
+          <div class="alert alert-danger" role="alert">
+            Password Not Matching
+          </div>
+        </div>
+        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+          <button [disabled]="registrationForm.invalid" class="btn btn-primary btn-lg">Register</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</div>

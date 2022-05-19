@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Bhartiya Patibha</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="!customer && isAuthorized()" aria-current="page" href="about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="!customer && isAuthorized()" aria-current="page" href="applicants">Applicants</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="home">Search</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="customer" aria-current="page" href="search/products">Products</a>
+        </li>
+        <li *ngIf="!isAuthorized()" class="nav-item">
+          <a class="nav-link" href="register">Register</a>
+        </li>
+        <li *ngIf="!isAuthorized()" class="nav-item">
+          <a class="nav-link" href="login">Login</a>
+        </li>
+        <li *ngIf="isAuthorized()" class="nav-item">
+          <a class="nav-link" (click)="signOut()">Logout</a>
+        </li>
+        <li *ngIf="isAuthorized() && customer" class="nav-item">
+          <a class="nav-link" href="services">Services</a>
+        </li>
+      </ul>
+      <div class="d-flex">
+        <h5 *ngIf="isAuthorized()" class="text-light text-capitalize fw-normal">Hi {{getUser()}}</h5>
+      </div>
+    </div>
+  </div>
+</nav>

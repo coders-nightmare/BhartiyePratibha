@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+
+
+<div class="container mt-5">
+    <div class="row justify-content-around">
+        <div class="col text-center">
+                <h2>Product  List</h2>
+            
+        </div>      
+    </div>
+    <div class="row mt-5">
+        <div class="col">
+            <form #filterForm="ngForm" (ngSubmit)="filterProduct(filterForm.value)">
+                <div class="row justify-content-around">
+                    <div class="col-md-3 col-5 m-1">
+                        <input ngModel #brand="ngModel" minlength="3" maxlength="50" pattern="^[A-z0-9&-]*$|^[A-z0-9&-]+\s[A-z0-9&-]*$"  type="text" class="form-control" id="brand" name="brand" placeholder="Brand">          
+                    </div>
+                    <div class="col-md-3 col-5 m-1">
+                        <input [disabled]="!isAuthorized()" min="1" max="100000" ngModel #minPrice="ngModel"  type="number" class="form-control" id="minPrice" name="minPrice" placeholder="0(min-price)">          
+                    </div>
+                    <div class="col-md-3 col-5 m-1">
+                        <input [disabled]="!isAuthorized()" min="1" max="100000"  ngModel #maxPrice="ngModel"  type="number" class="form-control" id="maxPrice" name="maxPrice" placeholder="100000(max-price)">          
+                    </div>
+                    <div class="col-md-1 col-5 m-1">
+
+                        <button [disabled]="filterForm.invalid" class="btn btn-outline-primary">Filter</button>
+                    </div>
+                </div>
+              </form>
+        </div>
+    </div>
+
+    <div *ngIf="pageError" class="row mt-3">
+        <div class="alert alert-danger text-center" role="alert">
+            No Product Found!
+          </div>
+    </div>
+
+    <div class="row justify-content-around mt-3">
+        <div *ngFor="let product of productList" class="col-lg-3 col-md-5 col-sm-8 col-8 m-1">
+            <app-product-card [item]="product"></app-product-card>
+
+        </div>
+
+    </div>
+</div>
